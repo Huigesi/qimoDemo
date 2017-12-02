@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>foreach遍历二维数组数组,显示学生信息</title>
+</head>
+
+<body>
+	<?php
+	include('conn.php');
+		$sql = 'select distinct(km) from tb_grade';
+		$r = mysql_query($sql);
+
+	?>
+	<a href="goindex.html">返回</a>
+	<center>
+
+		<hr/>
+<table border="1" cellspacing="0">
+
+	
+	<h1 align="center">学生成绩表</h1>
+	<a href="add_grade.html" style="font-size: 20px;text-decoration: none;">添加成绩记录</a><br/><br/>
+	<form action="ktlx19-2.php" method="post">
+	请输入学号:<input type="xh" name="xh"/>
+    <input type="submit" name="sub" value="确定"/>
+    <br/><br/>
+    <form action="ktlx19-2do.php" method="post">
+    请选择要查询成绩的科目：
+	<select name="sel">
+      <?php
+      		  	while($row = mysql_fetch_array($r)){
+				echo '<option value="'.$row['km'].'">';
+				echo $row['km'];
+				echo '</option>';
+			}
+	  ?>
+    </select>
+    <input type="submit" value="查询" name="sub"/>
+</form>
+    <br/><br/>
+
+	
+<tr><td>学号</td><td>姓名</td><td>科目</td><td>成绩</td><td>修改</td><td>删除</td></tr>
+    
+<{foreach  from=$ary item=sz}>
+	<tr><td><{$sz.xh}>&nbsp;</td><td><{$sz.xm}>&nbsp;</td><td><{$sz.km}>&nbsp;</td><td><{$sz.cj}></td>
+	<td><a href="md_grade.php?xh=<{$sz.xh}>">修改</a></td><td><a href="del_grade.php?xh=<{$sz.xh}>&km=<{$sz.km}>">删除</a></td>
+	</tr>
+<{/foreach}>
+</table>
+<hr/>
+
+</center>
+</body>
+</html>

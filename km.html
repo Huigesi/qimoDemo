@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>foreach遍历二维数组数组,显示学生信息</title>
+</head>
+
+<body>
+	<a href="goindex.html">返回</a>
+	<center>
+
+		<hr/>
+<table border="1" cellspacing="0">
+
+	
+	<h1 align="center">科目信息表</h1>
+	<a href="add_km.html">添加科目信息</a>
+<tr><td>科目编号</td><td>科目名称</td><td>修改</td><td>删除</td></tr>
+    
+<{foreach  from=$ary item=sz}>
+	<tr><td><{$sz.id}>&nbsp;</td></td><td><{$sz.km}>&nbsp;</td>
+	<td><a href="md_km.php?xh=<{$sz.id}>">修改</a></td><td><a href="del_km.php?id=<{$sz.id}>">删除</a></td>
+	</tr>
+<{/foreach}>
+</table>
+<hr/>
+
+</center>
+</body>
+</html>
